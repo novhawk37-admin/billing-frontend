@@ -1,0 +1,17 @@
+/* Tailwind base styles */
+@tailwind base;
+
+/* Tailwind component classes */
+@tailwind components;
+
+/* Tailwind utility classes */
+@tailwind utilities;
+
+/* --- Your custom global styles can go below this line --- */
+
+/* Example (optional):
+html, body {
+  margin: 0;
+  padding: 0;
+}
+*/
