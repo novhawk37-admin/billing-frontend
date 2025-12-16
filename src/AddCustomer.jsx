@@ -10,7 +10,7 @@ const AddCustomer = () => {
   // FETCH CUSTOMERS
   const fetchCustomers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/customers");
+      const res = await axios.get("https://billing-backend-2pfd.onrender.com/api/customers");
       setCustomers(res.data.data); // backend returns { success, data }
     } catch (err) {
       console.error(err);
@@ -22,7 +22,7 @@ const AddCustomer = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:5000/api/customers",
+        "https://billing-backend-2pfd.onrender.com/api/customers",
         form,
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
@@ -39,7 +39,7 @@ const AddCustomer = () => {
     if (!window.confirm("Are you sure you want to delete this customer?")) return;
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/customers/${id}`,
+        `https://billing-backend-2pfd.onrender.com/api/customers/${id}`,
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
       if (res.data.success) {
