@@ -20,7 +20,7 @@ export default function App() {
   // ---- FETCH INVOICES ----
   const fetchInvoices = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/invoices");
+      const res = await axios.get("https://billing-backend-2pfd.onrender.com//api/invoices");
       setInvoices(res.data.data || []);
     } catch (err) {
       console.warn("Could not fetch invoices from backend — using sample data.", err);
