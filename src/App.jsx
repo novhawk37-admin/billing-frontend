@@ -20,7 +20,7 @@ export default function App() {
   // ---- FETCH INVOICES ----
   const fetchInvoices = async () => {
     try {
-      const res = await axios.get("https://billing-backend-2pfd.onrender.com//api/invoices");
+      const res = await axios.get("https://billing-backend-2pfd.onrender.com/api/invoices");
       setInvoices(res.data.data || []);
     } catch (err) {
       console.warn("Could not fetch invoices from backend — using sample data.", err);
@@ -46,7 +46,7 @@ export default function App() {
   // ---- CREATE INVOICE ----
   async function addInvoice(payload) {
     try {
-      const res = await axios.post("http://localhost:5000/api/invoices", {
+      const res = await axios.post("https://billing-backend-2pfd.onrender.com/api/invoices", {
         customer: payload.customer,
         email: payload.email,
         phone: payload.phone,
@@ -76,7 +76,7 @@ export default function App() {
   async function sendInvoice(inv) {
     if (!inv.email) return alert("No email provided for this invoice.");
     try {
-      await axios.post("http://localhost:5000/api/send-invoice", {
+      await axios.post("https://billing-backend-2pfd.onrender.com/api/send-invoice", {
         name: inv.customer,
         email: inv.email,
         invoiceId: inv.id,
