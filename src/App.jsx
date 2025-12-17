@@ -72,23 +72,23 @@ export default function App() {
     setInvoices((s) => s.map((inv) => (inv.id === id ? { ...inv, status } : inv)));
   }
 
-  // ---- SEND INVOICE EMAIL ----
-  async function sendInvoice(inv) {
-    if (!inv.email) return alert("No email provided for this invoice.");
-    try {
-      await axios.post("https://billing-backend-2pfd.onrender.com/api/send-invoice", {
-        name: inv.customer,
-        email: inv.email,
-        invoiceId: inv.id,
-        paid: inv.status === "Paid" ? inv.amount : 0,
-        pending: inv.status === "Pending" ? inv.amount : 0,
-      });
-      alert(`Invoice ${inv.id} sent to ${inv.email}`);
-    } catch (err) {
-      console.error("Manual send failed:", err);
-      alert(`Failed to send invoice ${inv.id}`);
-    }
+
+// ---- SEND INVOICE EMAIL ----
+async function sendInvoice(inv) {
+  if (!inv.email) return alert("No email provided for this invoice.");
+
+  try {
+    await axios.post(
+      `https://billing-backend-2pfd.onrender.com/api/invoices/send/${inv.id}`
+    );
+
+    alert(`Invoice ${inv.id} sent successfully to ${inv.email}`);
+  } catch (err) {
+    console.error("Send invoice failed:", err);
+    alert(`Failed to send invoice ${inv.id}`);
   }
+}
+
 
   return (
     <div className="min-h-screen flex bg-gray-100 overflow-hidden">
